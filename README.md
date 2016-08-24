@@ -1,6 +1,6 @@
 # Redis::ReconnectWithReadonly
 
-Reconnect your redis connection if `Redis::CommandError READONLY You can't write against a read only slave.` appears because of failover.
+Reconnect your redis connection if `Redis::CommandError READONLY You can't write against a read only slave.` occurs because of failover.
 
 When redis cluster failovers, the redis master is depromoted to slave and will be READONLY. Such case we have to reconnect redis connection so that new connection goes to new master which is writable.
 
@@ -26,6 +26,10 @@ Or install it yourself as:
 require 'redis/reconnect_with_readonly'
 ```
 
+## Implementation
+
+This gem monkey patches `Redis::Client#read`.
+
 ## Development
 
 ```
@@ -43,10 +47,6 @@ $ bin/console
 > redis = Redis.new(:host => "localhost", :port => 6380)
 > redis.set('key', 'val')
 ```
-
-## Implementation
-
-This gem monkey patches `Redis::Client#read`.
 
 ## Contributing
 

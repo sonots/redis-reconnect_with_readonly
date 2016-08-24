@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Naotoshi Seo"]
   spec.email         = ["sonots@gmail.com"]
 
-  spec.summary       = %q{Reconnect redis if Redis::CommandError READONLY appears.}
-  spec.description   = %q{Reconnect redis if Redis::CommandError READONLY appears.}
+  spec.summary       = %q{Reconnect redis if Redis::CommandError READONLY occurs.}
+  spec.description   = %q{Reconnect redis if Redis::CommandError READONLY occurs.}
   spec.homepage      = "https://github.com/sonots/redis-reconnect_with_readonly."
   spec.license       = "MIT"
 
