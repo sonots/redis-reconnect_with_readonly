@@ -26,9 +26,20 @@ Or install it yourself as:
 require 'redis/reconnect_with_readonly'
 ```
 
+## Configuration
+
+This gem tries reconnection `reconnect_attempts` times.
+It will wait `2 ^ num of retries` second interval on each retry.
+The waiting interval can be suppressed up to `max_retry_interval`.
+
+```
+Redis::ReconnectWithReadonly.reconnect_attempts = 1
+Redis::ReconnectWithReadonly.max_retry_interval = 3600
+```
+
 ## Implementation
 
-This gem monkey patches `Redis::Client#read`.
+This gem monkey patches `Redis::Client`.
 
 ## Development
 
