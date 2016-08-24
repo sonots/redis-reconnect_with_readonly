@@ -15,8 +15,6 @@ class Redis
 end
 
 class Redis
-  class ReadonlyConnectionError < ConnectionError; end
-
   class Client
     def reconnect_with_readonly(&block)
       retries = 0
