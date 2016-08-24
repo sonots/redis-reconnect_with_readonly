@@ -44,6 +44,10 @@ $ bin/console
 > redis.set('key', 'val')
 ```
 
+## Implementation
+
+This gem monkey patches `Redis::Client#read`.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/redis-reconnect_with_readonly. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
