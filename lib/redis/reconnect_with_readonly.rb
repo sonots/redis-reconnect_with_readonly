@@ -32,6 +32,8 @@ class Redis
             } if logger
             sleep wait
             retries += 1
+            disconnect
+            logger.debug { "Reconnect with readonly: disconnected and retry" } if logger
             retry
           else
             logger.info {
