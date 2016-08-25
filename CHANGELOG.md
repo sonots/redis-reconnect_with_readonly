@@ -1,3 +1,9 @@
+# 0.9.1 (2016-08-26)
+
+Fixes:
+
+* Disconnect!
+
 # 0.9.0 (2016-08-25)
 
 Enhancements:
