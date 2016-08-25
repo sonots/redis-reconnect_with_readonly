@@ -5,11 +5,12 @@ require 'redis/errors'
 
 class Redis
   class ReconnectWithReadonly
-    @reconnect_attempts = 1
-    @max_retry_interval = 3600 # sec
+    @reconnect_attempts  = 3
+    @initial_retry_wait = 0.5
+    @max_retry_wait  = nil
 
     class << self
-      attr_accessor :reconnect_attempts, :max_retry_interval
+      attr_accessor :reconnect_attempts, :initial_retry_wait, :max_retry_wait
     end
   end
 end
@@ -23,12 +24,13 @@ class Redis
       rescue CommandError => e
         if e.message =~ /READONLY/
           if retries < (max_retries = ReconnectWithReadonly.reconnect_attempts)
-            interval = [2**retries, ReconnectWithReadonly.max_retry_interval].min
+            wait = ReconnectWithReadonly.initial_retry_wait * retries
+            wait = [wait, ReconnectWithReadonly.max_retry_wait].min if ReconnectWithReadonly.max_retry_wait
             logger.info {
               "Reconnect with readonly: #{e.message} " \
-              "(retries: #{retries}/#{max_retries}) (wait: #{interval}sec)"
+              "(retries: #{retries}/#{max_retries}) (wait: #{wait}sec)"
             } if logger
-            sleep interval
+            sleep wait
             retries += 1
             retry
           else

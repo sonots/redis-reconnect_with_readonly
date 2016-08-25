@@ -5,7 +5,8 @@ require "redis/reconnect_with_readonly"
 require 'logger'
 
 Redis::ReconnectWithReadonly.reconnect_attempts = 5
-Redis::ReconnectWithReadonly.max_retry_interval = 3
+Redis::ReconnectWithReadonly.initial_retry_wait = 1
+Redis::ReconnectWithReadonly.max_retry_wait = 3
 
 logger = Logger.new(STDOUT)
 redis = Redis.new(host: 'localhost', port: '6380', logger: logger)
