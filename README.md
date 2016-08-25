@@ -28,9 +28,9 @@ require 'redis/reconnect_with_readonly'
 
 ## Configuration
 
-This gem tries reconnection `reconnect_attempts` times.
-It will wait `initial_retry_wait * number of retries` second wait on each retry.
-The waiting wait can be suppressed up to `max_retry_wait`.
+This gem tries to reconnect `reconnect_attempts` times.
+It will wait `initial_retry_wait * number of retries` seconds on each retry.
+The waiting interval can be suppressed up to `max_retry_wait` seconds.
 
 ```
 Redis::ReconnectWithReadonly.reconnect_attempts = 10  # default: 3 (times)
