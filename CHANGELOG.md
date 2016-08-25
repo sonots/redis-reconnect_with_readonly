@@ -1,8 +1,13 @@
-# 1.0.0 (2016-08-25)
+# 0.9.0 (2016-08-25)
 
 Enhancements:
 
-* Add `initial_retry_wait` and change interval formula to `initial_retry_wait * number of retries`
+* Add `initial_retry_wait`
+
+Changes:
+
+* Rename `max_retry_interval` to `max_retry_wait`
+* Change wait formula from `initial_retry_wait ^ number of retries` to `initial_retry_wait * number of retries`
 
 # 0.1.1 (2016-08-24)
 
