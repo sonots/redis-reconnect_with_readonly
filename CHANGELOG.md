@@ -1,3 +1,9 @@
+# 0.9.3 (2016-08-28)
+
+Fixes:
+
+* raise e on give up
+
 # 0.9.2 (2016-08-28)
 
 Enhancements:
