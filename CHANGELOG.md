@@ -1,3 +1,9 @@
+# 0.9.2 (2016-08-28)
+
+Enhancements:
+
+* Add logger option
+
 # 0.9.1 (2016-08-26)
 
 Fixes:
