@@ -37,9 +37,10 @@ class Redis
               "Reconnect with readonly: Give up " \
               "(retries: #{retries}/#{reconnect_attempts})"
             } if logger
+            raise e
           end
         else
-          raise
+          raise e
         end
       end
     end
