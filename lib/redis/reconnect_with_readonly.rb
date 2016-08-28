@@ -12,34 +12,34 @@ class Redis
 
     class << self
       attr_accessor :reconnect_attempts, :initial_retry_wait, :max_retry_wait, :logger
+    end
 
-      def reconnect_with_readonly(redis, &block)
-        retries = 0
-        begin
-          yield block
-        rescue CommandError => e
-          if e.message =~ /READONLY/
-            if retries < reconnect_attempts
-              wait = initial_retry_wait * retries
-              wait = [wait, max_retry_wait].min if max_retry_wait
-              logger.info {
-                "Reconnect with readonly: #{e.message} " \
-                "(retries: #{retries}/#{reconnect_attempts}) (wait: #{wait}sec)"
-              } if logger
-              sleep wait
-              retries += 1
-              redis.disconnect
-              logger.debug { "Reconnect with readonly: disconnected and retry" } if logger
-              retry
-            else
-              logger.info {
-                "Reconnect with readonly: Give up " \
-                "(retries: #{retries}/#{reconnect_attempts})"
-              } if logger
-            end
+    def self.reconnect_with_readonly(redis, &block)
+      retries = 0
+      begin
+        yield block
+      rescue CommandError => e
+        if e.message =~ /READONLY/
+          if retries < reconnect_attempts
+            wait = initial_retry_wait * retries
+            wait = [wait, max_retry_wait].min if max_retry_wait
+            logger.info {
+              "Reconnect with readonly: #{e.message} " \
+              "(retries: #{retries}/#{reconnect_attempts}) (wait: #{wait}sec)"
+            } if logger
+            sleep wait
+            retries += 1
+            redis.disconnect
+            logger.debug { "Reconnect with readonly: disconnected and retry" } if logger
+            retry
           else
-            raise
+            logger.info {
+              "Reconnect with readonly: Give up " \
+              "(retries: #{retries}/#{reconnect_attempts})"
+            } if logger
           end
+        else
+          raise
         end
       end
     end
