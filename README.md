@@ -33,9 +33,10 @@ It will wait `initial_retry_wait * number of retries` seconds on each retry.
 The waiting interval can be suppressed up to `max_retry_wait` seconds.
 
 ```
-Redis::ReconnectWithReadonly.reconnect_attempts = 10  # default: 3 (times)
-Redis::ReconnectWithReadonly.initial_retry_wait = 1.0 # default: 0.5 (sec)
-Redis::ReconnectWithReadonly.max_retry_wait     = 5.0 # default: nil which means no max (sec)
+Redis::ReconnectWithReadonly.reconnect_attempts = 10     # default: 3 (times)
+Redis::ReconnectWithReadonly.initial_retry_wait = 1.0    # default: 0.5 (sec)
+Redis::ReconnectWithReadonly.max_retry_wait     = 5.0    # default: nil which means no max (sec)
+Redis::ReconnectWithReadonly.logger = Logger.new(STDOUT) # default: nil
 ```
 
 ## Implementation
