@@ -55,7 +55,7 @@ class Redis
       end
     end
 
-    def call_loop_with_reconnect_with_readonly(command, timeout, &block)
+    def call_loop_with_reconnect_with_readonly(command, timeout = 0, &block)
       ReconnectWithReadonly.reconnect_with_readonly(self) do
         call_loop_without_reconnect_with_readonly(command, timeout, &block)
       end
