@@ -1,3 +1,13 @@
+# 1.0.0 (2018-11-20)
+
+Enhancements:
+
+* Support `timeou`t argument of `call_loop` (thanks to Byron Wolfman)
+
+Changes:
+
+* Restrict `redis` gem `>= 3.3.0` to support the `timeout` argument.
+
 # 0.9.3 (2016-08-28)
 
 Fixes:
